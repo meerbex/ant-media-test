@@ -205,8 +205,6 @@ class StreamController extends Controller
             return redirect()->back()
                     ->withErrors("Ошибка");
         }
-        var_dump ($response->json());
-        die();
         $stream->delete();
     
         return redirect()->route('streams.index')->with('success','Stream has been deleted successfully');
