@@ -28,7 +28,7 @@
         @foreach ($streams as $stream)
         <tr>
             <td>{{ ++$i }}</td>
-            <td><img src="/image/{{ $stream->image }}" width="100px"></td>
+            <td><img src="{{asset('storage/'.$stream->image )}}" width="100px"></td>
             <td>{{ $stream->title }}</td>
             <td>{{ $stream->description }}</td>
             <td>{{ $stream->stream_id }}</td>

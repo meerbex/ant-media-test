@@ -7,7 +7,7 @@
         @foreach ($streams as $stream)
         <div class="col-md-3">
             <div class="card">
-                <img class="card-img-top" src="/image/{{ $stream->image }}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset('storage/'.$stream->image )}}" alt="Card image cap">
 
                 <div class="card-body">
                     <h5 class="card-title">{{ $stream->title }}</h5>

@@ -100,7 +100,7 @@ class StreamController extends Controller
 
             
 
-            $path = $request->file('image')->store('/images');
+            $path = $request->file('image')->store('public/images','public');
             
             $stream = new Stream;
             $stream->title = $request->title;
@@ -180,7 +180,7 @@ class StreamController extends Controller
             $request->validate([
               'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
-            $path = $request->file('image')->store('/images');
+            $path = $request->file('image')->store('public/images','public');
             $stream->image = $path;
         }
         $stream->title = $request->title;
@@ -199,6 +199,14 @@ class StreamController extends Controller
     public function destroy(Stream $stream)
     {
         //
+        $response = Http::delete('http://185.209.160.70:5080/LiveApp/rest/v2/broadcasts/'.$stream->stream_id);
+        if ($response->failed()) {
+            // return failure
+            return redirect()->back()
+                    ->withErrors("Ошибка");
+        }
+        var_dump ($response->json());
+        die();
         $stream->delete();
     
         return redirect()->route('streams.index')->with('success','Stream has been deleted successfully');
